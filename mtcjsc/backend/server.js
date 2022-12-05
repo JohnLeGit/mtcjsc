@@ -2,16 +2,21 @@ const express = require('express')
 const path = require('path')
 const cors = require('cors')
 const Pool  = require('pg');
+const router = express.Router()
 const app = express()
 const port = 3000;
-
+const usersController = require('./controllers')
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 app.get('/', (req,res) => res.status(200).sendFile(path.resolve(__dirname, '../../public/index.html')))
 
-
+app.post('/signup',
+    usersController.signUp,
+    (req,res) => {
+        res.status(200)
+    })
 
 
 app.use((req, res) => res.sendStatus(404));
