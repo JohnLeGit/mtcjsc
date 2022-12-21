@@ -10,6 +10,7 @@ usersController.signUp = async (req,res,next) => {
         VALUES ('${Email}' , '${Password}')`;
         const createNewUser = await db.query(databaseUserSignUp)
         res.locals.newUser = createNewUser.rows[0]
+        console.log(res.locals.newUser)
     } catch (error) {
         return next ({
             log :`Error ${error}`
