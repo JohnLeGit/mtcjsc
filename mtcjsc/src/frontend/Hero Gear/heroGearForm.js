@@ -95,10 +95,10 @@ const HeroGearFillIn = () => {
             <form>
                 <h3>Infantry</h3>
                 <select name = "herogearselection" id = 'herogearinformation'>
-                    <option value = "white" id = '1'>White 1*</option>
-                    <option value = "white" id = '2'>White 2*</option>
-                    <option value = "white" id = '3'>White 3*</option>
-                    <option value = "white" id = '4'>Green 1*</option>
+                    <option value = "white1star" id = '1'>White 1*</option>
+                    <option value = "white2star" id = '2'>White 2*</option>
+                    <option value = "white3star" id = '3'>White 3*</option>
+                    <option value = "green1star" id = '4'>Green 1*</option>
                     <option value = "white" id = '5'>Green 2*</option>
                     <option value = "white" id = '6'>Green 3*</option>
                     <option value = "white" id = '7'>Blue 1*</option>
