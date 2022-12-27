@@ -1,15 +1,19 @@
-import login from './frontend/login.js'
+import HeroGear from './frontend/Hero Gear/herogear.js'
+import FrontPage from './frontend/frontpage'
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          <h1>SOS Try for your character</h1>
-          <login />
-        </p>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path = "/" element = {<FrontPage/>}></Route>
+        <Route exact path = "/herogear" element = {<HeroGear/>}></Route>
+      </Routes>
+    </Router>
   );
 }
 
