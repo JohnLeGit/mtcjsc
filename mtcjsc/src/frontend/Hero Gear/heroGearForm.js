@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const HeroGearFillIn = () => {
     //setState
-    const heroGearObj = {
+    const [heroGearObj, setheroGearObj] = useState({
         white1star : {
             heropart : 25,
             geardesign : 0
@@ -85,9 +85,16 @@ const HeroGearFillIn = () => {
         } 
 
 
-    }
+    })
     const [currentInfantryGear, setCurrentInfantryFear] = useState(0);
 
+
+    //Handle when click submit on dropdown -> it shows the value on frontend
+    const handleSubmitHeroGearForInfantry = (event) => {
+        event.preventDefault()
+        const clickValue = heroGearObj[setCurrentInfantryFear]
+        console.log(`click value chosen : ${clickValue}`  )
+    }
 
     return (
         <div>
@@ -99,22 +106,22 @@ const HeroGearFillIn = () => {
                     <option value = "white2star" id = '2'>White 2*</option>
                     <option value = "white3star" id = '3'>White 3*</option>
                     <option value = "green1star" id = '4'>Green 1*</option>
-                    <option value = "white" id = '5'>Green 2*</option>
-                    <option value = "white" id = '6'>Green 3*</option>
-                    <option value = "white" id = '7'>Blue 1*</option>
-                    <option value = "white">Blue 2*</option>
-                    <option value = "white">Blue 3*</option>
-                    <option value = "white">Blue 4*</option>
-                    <option value = "white">Purple 1*</option>
-                    <option value = "white">Purple 2*</option>
-                    <option value = "white">Purple 3*</option>
-                    <option value = "white">Purple 4*</option>
-                    <option value = "white">Purple 5*</option>
-                    <option value = "white">Orange 1*</option>
-                    <option value = "white">Orange 2*</option>
-                    <option value = "white">Orange 3*</option>
-                    <option value = "white">Orange 4*</option>
-                    <option value = "white">Orange 5*</option>
+                    <option value = "green2star" id = '5'>Green 2*</option>
+                    <option value = "green3star" id = '6'>Green 3*</option>
+                    <option value = "blue1star" id = '7'>Blue 1*</option>
+                    <option value = "blue2star">Blue 2*</option>
+                    <option value = "blue3star">Blue 3*</option>
+                    <option value = "blue4star">Blue 4*</option>
+                    <option value = "purple1star">Purple 1*</option>
+                    <option value = "purple2star">Purple 2*</option>
+                    <option value = "purple3star">Purple 3*</option>
+                    <option value = "purple4star">Purple 4*</option>
+                    <option value = "purple5star">Purple 5*</option>
+                    <option value = "orange1star">Orange 1*</option>
+                    <option value = "orange2star">Orange 2*</option>
+                    <option value = "orange3star">Orange 3*</option>
+                    <option value = "orange4star">Orange 4*</option>
+                    <option value = "orange5star">Orange 5*</option>
                 </select>
                     <button onClick = {() => setCurrentInfantryFear(
                         heroGearObj.blue1star.heropart

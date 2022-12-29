@@ -22,7 +22,7 @@ app.post('/signup',
     // usersController.checkForUsername, 
     usersController.signUp,
     (req,res) => {
-        res.status('work')
+        res.send('work')
     })
 
 //------***** LOG IN *****-----//
@@ -30,7 +30,7 @@ app.post('/signup',
 app.get('/login',
     usersControllerLogin.login,
     (req,res) => {
-        res.status('work')
+        res.send('work')
     })
 
 app.use((req, res) => res.sendStatus(404));
