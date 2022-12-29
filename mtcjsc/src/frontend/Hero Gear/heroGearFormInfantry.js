@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const HeroGearFillIn = () => {
+const InfantryHeroGearFillIn = () => {
     //setState
     const [heroGearObj, setheroGearObj] = useState({
         white1star : {
@@ -97,7 +97,6 @@ const HeroGearFillIn = () => {
     const [heropartswanttoupgrade, setHeropartswanttoupgrade] = useState(0)
     const [geardesignwanttoupgrade, setGeardesignwanttoupgrade] = useState(0)
     //--------YOUR GEAR STATE WANT TO UPGRADE TO TOTAL -----------
-    const [amountYouNeedHeroGear, setamountYouNeedHeroGear] = useState(0)
     const [amountHeroGearNeeded, setAmountHeroGearNeeded] = useState(0)
     const [amountHeroGearDesignNeeded, setAmountHeroGearDesignNeeded] = useState(0)
 
@@ -212,7 +211,7 @@ const HeroGearFillIn = () => {
 
     return (
         <div>
-            <h1> Testing </h1>
+            <h1> Infantry Hero Gear Upgrade </h1>
             <form >
                 <label>
                     Select your current infantry hero gear level:
@@ -281,54 +280,6 @@ const HeroGearFillIn = () => {
 
                     <h3> You Need : {amountHeroGearDesignNeeded} Hero Design to upgrade</h3>
                 </div>
-                <h3>Hunter</h3>
-                <select name = "herogearselection" id = 'herogearinformation'>
-                    <option value = "white">White 1*</option>
-                    <option value = "white">White 2*</option>
-                    <option value = "white">White 3*</option>
-                    <option value = "white">Green 1*</option>
-                    <option value = "white">Green 2*</option>
-                    <option value = "white">Green 3*</option>
-                    <option value = "white">Blue 1*</option>
-                    <option value = "white">Blue 2*</option>
-                    <option value = "white">Blue 3*</option>
-                    <option value = "white">Blue 4*</option>
-                    <option value = "white">Purple 1*</option>
-                    <option value = "white">Purple 2*</option>
-                    <option value = "white">Purple 3*</option>
-                    <option value = "white">Purple 4*</option>
-                    <option value = "white">Purple 5*</option>
-                    <option value = "white">Orange 1*</option>
-                    <option value = "white">Orange 2*</option>
-                    <option value = "white">Orange 3*</option>
-                    <option value = "white">Orange 4*</option>
-                    <option value = "white">Orange 5*</option>
-                </select>
-                    <button>Submit</button>
-                <h3>Rider</h3>
-                <select name = "herogearselection" id = 'herogearinformation'>
-                    <option value = "white">White 1*</option>
-                    <option value = "white">White 2*</option>
-                    <option value = "white">White 3*</option>
-                    <option value = "white">Green 1*</option>
-                    <option value = "white">Green 2*</option>
-                    <option value = "white">Green 3*</option>
-                    <option value = "white">Blue 1*</option>
-                    <option value = "white">Blue 2*</option>
-                    <option value = "white">Blue 3*</option>
-                    <option value = "white">Blue 4*</option>
-                    <option value = "white">Purple 1*</option>
-                    <option value = "white">Purple 2*</option>
-                    <option value = "white">Purple 3*</option>
-                    <option value = "white">Purple 4*</option>
-                    <option value = "white">Purple 5*</option>
-                    <option value = "white">Orange 1*</option>
-                    <option value = "white">Orange 2*</option>
-                    <option value = "white">Orange 3*</option>
-                    <option value = "white">Orange 4*</option>
-                    <option value = "white">Orange 5*</option>
-                </select>         
-                    <button>Submit</button>
             </form>
 
 
@@ -336,4 +287,4 @@ const HeroGearFillIn = () => {
     )
 }
 
-export default HeroGearFillIn;
+export default InfantryHeroGearFillIn;

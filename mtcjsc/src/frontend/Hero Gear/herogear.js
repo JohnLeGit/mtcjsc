@@ -1,6 +1,8 @@
 import React from 'react';
 import {  useNavigate } from 'react-router-dom';
-import HeroGearInformation from './heroGearForm';
+import InfantryHeroGearInformation from './heroGearFormInfantry';
+import HunterHeroGearInformation from './heroGearFormHunter'
+import RiderHeroGearInformation from './heroGearFormRider'
 
 function HeroGear() {
 
@@ -13,11 +15,19 @@ function HeroGear() {
         <header className="Login-header">
           <div>
             <h1>SOS Hero gears calculation</h1>
-            <HeroGearInformation/>
-          </div>
-          <p>
             <h2>Select your gears</h2>
-          </p>
+            <InfantryHeroGearInformation/>
+          </div>
+          <div>
+            <hr>
+            <HunterHeroGearInformation/>
+            </hr>
+          </div>
+          <div>
+            <hr>
+            <RiderHeroGearInformation/>
+            </hr>
+          </div>
           <button type = 'button' onClick = {handleClickToGoBack}> Go back to main page</button>
         </header>
       </div>
