@@ -1,6 +1,6 @@
 import React from 'react';
 import {  useNavigate } from 'react-router-dom';
-import HeroGearInformation from './heroGearForm';
+import HeroGearInformation from './heroGearFormInfantry';
 
 function HeroGear() {
 

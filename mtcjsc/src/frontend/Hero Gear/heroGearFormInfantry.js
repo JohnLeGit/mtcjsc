@@ -212,7 +212,7 @@ const HeroGearFillIn = () => {
 
     return (
         <div>
-            <h1> Testing </h1>
+            <h1> Hero Gear Calculation </h1>
             <form >
                 <label>
                     Select your current infantry hero gear level:
@@ -239,12 +239,6 @@ const HeroGearFillIn = () => {
                     <option value = "orange5star">Orange 5*</option>
                     </select>
                 </label>       
-                    {/* <div>
-                        <h3>You hero gear parts currently: {heroparts}  </h3> 
-                    </div>
-                    <div>
-                        <h3>You hero gear design currently: {geardesign} </h3>
-                 </div> */}
                  <h3>What Level do you want to upgrade to</h3>
                  <label>
                     Select your current infantry hero gear level:
@@ -271,10 +265,6 @@ const HeroGearFillIn = () => {
                     <option value = "orange5star">Orange 5*</option>
                     </select>
                 </label>
-                {/* <div>
-                    <h3> Hero Gear you want to upgrade to : {heropartswanttoupgrade}</h3>
-                    <h3>Hero Gear you want to upgrade to : {geardesignwanttoupgrade}</h3>
-                </div> */}
 
                 <div>
                     <h3> You need : {amountHeroGearNeeded} Hero Gear to upgrade</h3>
