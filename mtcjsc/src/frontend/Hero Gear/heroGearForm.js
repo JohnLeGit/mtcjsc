@@ -89,11 +89,17 @@ const HeroGearFillIn = () => {
     const [currentInfantryGear, setCurrentInfantryFear] = useState(0);
     const [currentChooseInfantryGear, setCurrentChooseInfantryFear] = useState(0);
     const [index, setIndex] = useState(0)
-
-
+    //--------YOUR GEAR STATE -----------
     const [heroparts, setHeroparts] = useState(0)
     const [geardesign, setGeardesigns] = useState(0)
-
+    //--------YOUR GEAR STATE WANT TO UPGRADE TO -----------
+    const [secondIndex, setSecondIndex] = useState(0)
+    const [heropartswanttoupgrade, setHeropartswanttoupgrade] = useState(0)
+    const [geardesignwanttoupgrade, setGeardesignwanttoupgrade] = useState(0)
+    //--------YOUR GEAR STATE WANT TO UPGRADE TO TOTAL -----------
+    const [amountYouNeedHeroGear, setamountYouNeedHeroGear] = useState(0)
+    const [amountHeroGearNeeded, setAmountHeroGearNeeded] = useState(0)
+    const [amountHeroGearDesignNeeded, setAmountHeroGearDesignNeeded] = useState(0)
 
     let setHeroGearDesign = 0 
     let setGeardesign = 0
@@ -112,41 +118,97 @@ const HeroGearFillIn = () => {
                 setGeardesign = innerArray[1]
                 
                 setIndex(i)
+                setHeroparts(setHeropart)
+                setGeardesigns(setGeardesign)
             }
         }
 
         // console.log(`Inside handleClickForSetHeroGear : ${setCurrentInfantryFear} and ${event.target.value};` )
         console.log('heropart' , setHeropart)
         console.log('hero gear design' , setHeroGearDesign)
-
-        
     }
     
     useEffect(()=> {
         console.log('index', index)
     },[index])
 
-    //
+    useEffect(()=> {
+        console.log('heroparts', heroparts)
+    },[heroparts])
+
+    useEffect(()=> {
+        console.log('geardesign', geardesign)
+    },[geardesign])
+
+    
     const handleClickToFindWhatNeed = (event) => {
         event.preventDefault()
-        console.log(event.target.value)
         setCurrentChooseInfantryFear(event.target.value)
         let arraySecond = Object.entries(heroGearObj)
-        // console.log(array, Array.isArray(array), array.length)
+        console.log(arraySecond, Array.isArray(arraySecond), arraySecond.length)
         console.log(heroGearObj[currentInfantryGear])
         for( let i =0 ; i < arraySecond.length; i++ ){
             if(arraySecond[i][0] === event.target.value){
-                indexForTracking = i
+                setSecondIndex(i)
+                indexForTracking = i 
+                let innerSecondArray = Object.values(arraySecond[i][1])
+
+                setHeropartswanttoupgrade(innerSecondArray[0])
+                setGeardesignwanttoupgrade(innerSecondArray[1])
+
             }
         }
-        
-        if(indexForTracking <= index){
-            console.log('no')
-            console.log(`${indexForTracking} vs ${index}`)
-            alert(`You already reach or pass this level`)
+        let heroGearStored = []
+        let heroPartStored = []
+        let heroGearTotal = 0 
+        let heroPartTotal = 0 
+        for ( let i = index + 1; i <= indexForTracking ; i++){
+            console.log(arraySecond[i])
+            //arraySecond[i][1] it must be at 1 to retrieve {heropart: ... ; geardesign...}
+
+            let innerSecondArray = Object.values(arraySecond[i][1])
+            heroGearStored.push(innerSecondArray[0])
+            heroPartStored.push(innerSecondArray[1])
+
+            console.log(heroGearStored)
+            console.log(heroPartStored)
+
         }
 
+        for ( let i = 0 ; i < heroGearStored.length; i++){
+            heroGearTotal += heroGearStored[i]
+            heroPartTotal += heroPartStored[i]
+        }
+
+        console.log(heroGearTotal)
+        console.log(heroPartTotal)
+        setAmountHeroGearNeeded(heroGearTotal)
+        setAmountHeroGearDesignNeeded(heroPartTotal)
+
+        if(indexForTracking <= index){
+            alert(`You already reach or pass this level`)
+        }
     }
+
+    useEffect(() => {
+        console.log('secondIndex', secondIndex)
+    },[secondIndex])
+
+    useEffect(() => {
+        console.log('heropartswanttoupgrade', heropartswanttoupgrade)
+    },[heropartswanttoupgrade])
+
+    useEffect(() => {
+        console.log('geardesignwanttoupgrade', geardesignwanttoupgrade)
+    },[geardesignwanttoupgrade])
+
+    useEffect(()=> {
+        console.log('total amount needed' ,amountHeroGearNeeded )
+    }, [amountHeroGearNeeded])
+    
+    useEffect(()=> {
+        console.log('total amount needed' ,amountHeroGearDesignNeeded )
+    }, [amountHeroGearDesignNeeded])
 
     return (
         <div>
@@ -176,15 +238,13 @@ const HeroGearFillIn = () => {
                     <option value = "orange4star">Orange 4*</option>
                     <option value = "orange5star">Orange 5*</option>
                     </select>
-                </label>
-          
-                 <div>
-                    Your current gear is: {JSON.stringify(currentInfantryGear)} with {JSON.stringify(heroGearObj[currentInfantryGear])}
-
-                    {/* Your hero part amount are: {JSON.stringify(heroGearObj[currentInfantryGear]['geardesign'])} */}
-
-
-                 </div>
+                </label>       
+                    {/* <div>
+                        <h3>You hero gear parts currently: {heroparts}  </h3> 
+                    </div>
+                    <div>
+                        <h3>You hero gear design currently: {geardesign} </h3>
+                 </div> */}
                  <h3>What Level do you want to upgrade to</h3>
                  <label>
                     Select your current infantry hero gear level:
@@ -211,7 +271,16 @@ const HeroGearFillIn = () => {
                     <option value = "orange5star">Orange 5*</option>
                     </select>
                 </label>
+                {/* <div>
+                    <h3> Hero Gear you want to upgrade to : {heropartswanttoupgrade}</h3>
+                    <h3>Hero Gear you want to upgrade to : {geardesignwanttoupgrade}</h3>
+                </div> */}
 
+                <div>
+                    <h3> You need : {amountHeroGearNeeded} Hero Gear to upgrade</h3>
+
+                    <h3> You Need : {amountHeroGearDesignNeeded} Hero Design to upgrade</h3>
+                </div>
                 <h3>Hunter</h3>
                 <select name = "herogearselection" id = 'herogearinformation'>
                     <option value = "white">White 1*</option>
