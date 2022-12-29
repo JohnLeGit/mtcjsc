@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const HeroGearFillIn = () => {
     //setState
@@ -87,12 +87,18 @@ const HeroGearFillIn = () => {
 
     })
     const [currentInfantryGear, setCurrentInfantryFear] = useState(0);
-    // const [heropart, setHeropart] = useState(0)
-    // const [geardesign, setGeardesign] = useState(0)
+    const [currentChooseInfantryGear, setCurrentChooseInfantryFear] = useState(0);
+    const [index, setIndex] = useState(0)
 
-    let setHeropart = 0 
+
+    const [heroparts, setHeroparts] = useState(0)
+    const [geardesign, setGeardesigns] = useState(0)
+
+
+    let setHeroGearDesign = 0 
     let setGeardesign = 0
-    let findIndex = 0
+    let setHeropart = 0 
+    let indexForTracking = 0 
     //Handle click to grab the value from dropdown to store it in event.target
     const handleClickForSetHeroGear = (event) => {
         event.preventDefault()
@@ -101,26 +107,47 @@ const HeroGearFillIn = () => {
         console.log(array)
         for ( let i = 0 ; i < array.length; i++){
             if(array[i][0] === event.target.value){
-                findIndex = i
                 let innerArray = Object.values(array[i][1])
-                console.log(innerArray)
+                setHeropart = innerArray[0]
+                setGeardesign = innerArray[1]
+                
+                setIndex(i)
             }
         }
-        console.log(`Inside handleClickForSetHeroGear : ${setCurrentInfantryFear} and ${event.target.value};` )
+
+        // console.log(`Inside handleClickForSetHeroGear : ${setCurrentInfantryFear} and ${event.target.value};` )
         console.log('heropart' , setHeropart)
-        // console.log(findIndex)
+        console.log('hero gear design' , setHeroGearDesign)
+
+        
     }
+    
+    useEffect(()=> {
+        console.log('index', index)
+    },[index])
 
     //
     const handleClickToFindWhatNeed = (event) => {
         event.preventDefault()
-        let array = Object.entries(heroGearObj)
-        console.log(array, Array.isArray(array), array.length)
+        console.log(event.target.value)
+        setCurrentChooseInfantryFear(event.target.value)
+        let arraySecond = Object.entries(heroGearObj)
+        // console.log(array, Array.isArray(array), array.length)
         console.log(heroGearObj[currentInfantryGear])
-        for( let i =0 ; i < array.length; i++ ){
-            console.log(array[i][1])
+        for( let i =0 ; i < arraySecond.length; i++ ){
+            if(arraySecond[i][0] === event.target.value){
+                indexForTracking = i
+            }
         }
+        
+        if(indexForTracking <= index){
+            console.log('no')
+            console.log(`${indexForTracking} vs ${index}`)
+            alert(`You already reach or pass this level`)
+        }
+
     }
+
     return (
         <div>
             <h1> Testing </h1>
@@ -153,11 +180,15 @@ const HeroGearFillIn = () => {
           
                  <div>
                     Your current gear is: {JSON.stringify(currentInfantryGear)} with {JSON.stringify(heroGearObj[currentInfantryGear])}
+
+                    {/* Your hero part amount are: {JSON.stringify(heroGearObj[currentInfantryGear]['geardesign'])} */}
+
+
                  </div>
                  <h3>What Level do you want to upgrade to</h3>
                  <label>
                     Select your current infantry hero gear level:
-                    <select onChange = {handleClickToFindWhatNeed}>
+                    <select value = {currentChooseInfantryGear} onChange = {handleClickToFindWhatNeed}>
                     <option value = "white1star" id = '1'>White 1*</option>
                     <option value = "white2star" id = '2'>White 2*</option>
                     <option value = "white3star" id = '3'>White 3*</option>
