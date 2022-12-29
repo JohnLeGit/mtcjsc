@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import {createContext, useContext} from 'react';
+import { gearInformationAllTroops } from "./herogear"
 
 const InfantryHeroGearFillIn = () => {
     //setState
+    
     const [heroGearObj, setheroGearObj] = useState({
         white1star : {
             heropart : 25,
@@ -100,6 +103,10 @@ const InfantryHeroGearFillIn = () => {
     const [amountHeroGearNeeded, setAmountHeroGearNeeded] = useState(0)
     const [amountHeroGearDesignNeeded, setAmountHeroGearDesignNeeded] = useState(0)
 
+    //useContect implimentation
+    const [gearInfo, setgearInfo] = useContext(gearInformationAllTroops)
+
+
     let setHeroGearDesign = 0 
     let setGeardesign = 0
     let setHeropart = 0 
@@ -109,7 +116,6 @@ const InfantryHeroGearFillIn = () => {
         event.preventDefault()
         setCurrentInfantryFear(event.target.value)
         let array = Object.entries(heroGearObj)
-        console.log(array)
         for ( let i = 0 ; i < array.length; i++){
             if(array[i][0] === event.target.value){
                 let innerArray = Object.values(array[i][1])
@@ -121,31 +127,16 @@ const InfantryHeroGearFillIn = () => {
                 setGeardesigns(setGeardesign)
             }
         }
-
-        // console.log(`Inside handleClickForSetHeroGear : ${setCurrentInfantryFear} and ${event.target.value};` )
-        console.log('heropart' , setHeropart)
-        console.log('hero gear design' , setHeroGearDesign)
     }
     
     useEffect(()=> {
-        console.log('index', index)
-    },[index])
-
-    useEffect(()=> {
-        console.log('heroparts', heroparts)
-    },[heroparts])
-
-    useEffect(()=> {
-        console.log('geardesign', geardesign)
-    },[geardesign])
+    },[index,heroparts,geardesign])
 
     
     const handleClickToFindWhatNeed = (event) => {
         event.preventDefault()
         setCurrentChooseInfantryFear(event.target.value)
         let arraySecond = Object.entries(heroGearObj)
-        console.log(arraySecond, Array.isArray(arraySecond), arraySecond.length)
-        console.log(heroGearObj[currentInfantryGear])
         for( let i =0 ; i < arraySecond.length; i++ ){
             if(arraySecond[i][0] === event.target.value){
                 setSecondIndex(i)
@@ -162,15 +153,11 @@ const InfantryHeroGearFillIn = () => {
         let heroGearTotal = 0 
         let heroPartTotal = 0 
         for ( let i = index + 1; i <= indexForTracking ; i++){
-            console.log(arraySecond[i])
             //arraySecond[i][1] it must be at 1 to retrieve {heropart: ... ; geardesign...}
 
             let innerSecondArray = Object.values(arraySecond[i][1])
             heroGearStored.push(innerSecondArray[0])
             heroPartStored.push(innerSecondArray[1])
-
-            console.log(heroGearStored)
-            console.log(heroPartStored)
 
         }
 
@@ -178,9 +165,6 @@ const InfantryHeroGearFillIn = () => {
             heroGearTotal += heroGearStored[i]
             heroPartTotal += heroPartStored[i]
         }
-
-        console.log(heroGearTotal)
-        console.log(heroPartTotal)
         setAmountHeroGearNeeded(heroGearTotal)
         setAmountHeroGearDesignNeeded(heroPartTotal)
 
@@ -188,26 +172,17 @@ const InfantryHeroGearFillIn = () => {
             alert(`You already reach or pass this level`)
         }
     }
-
-    useEffect(() => {
-        console.log('secondIndex', secondIndex)
-    },[secondIndex])
-
-    useEffect(() => {
-        console.log('heropartswanttoupgrade', heropartswanttoupgrade)
-    },[heropartswanttoupgrade])
-
-    useEffect(() => {
-        console.log('geardesignwanttoupgrade', geardesignwanttoupgrade)
-    },[geardesignwanttoupgrade])
-
-    useEffect(()=> {
-        console.log('total amount needed' ,amountHeroGearNeeded )
-    }, [amountHeroGearNeeded])
     
-    useEffect(()=> {
-        console.log('total amount needed' ,amountHeroGearDesignNeeded )
-    }, [amountHeroGearDesignNeeded])
+    const handleClick = (event) => {
+        event.preventDefault()
+        setgearInfo({
+            infantryherogear : amountHeroGearNeeded,
+            infrantryherodesign: amountHeroGearDesignNeeded,
+        })
+    }
+    useEffect(() => {
+    },[secondIndex,heropartswanttoupgrade,geardesignwanttoupgrade,amountHeroGearDesignNeeded])
+
 
     return (
         <div>
@@ -238,12 +213,6 @@ const InfantryHeroGearFillIn = () => {
                     <option value = "orange5star">Orange 5*</option>
                     </select>
                 </label>       
-                    {/* <div>
-                        <h3>You hero gear parts currently: {heroparts}  </h3> 
-                    </div>
-                    <div>
-                        <h3>You hero gear design currently: {geardesign} </h3>
-                 </div> */}
                  <h3>What Level do you want to upgrade to</h3>
                  <label>
                     Select your current infantry hero gear level:
@@ -270,18 +239,13 @@ const InfantryHeroGearFillIn = () => {
                     <option value = "orange5star">Orange 5*</option>
                     </select>
                 </label>
-                {/* <div>
-                    <h3> Hero Gear you want to upgrade to : {heropartswanttoupgrade}</h3>
-                    <h3>Hero Gear you want to upgrade to : {geardesignwanttoupgrade}</h3>
-                </div> */}
-
                 <div>
                     <h3> You need : {amountHeroGearNeeded} Hero Gear to upgrade</h3>
 
                     <h3> You Need : {amountHeroGearDesignNeeded} Hero Design to upgrade</h3>
+                    <button onClick = { handleClick }> Submit </button>
                 </div>
             </form>
-
 
         </div>
     )

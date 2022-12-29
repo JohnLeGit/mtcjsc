@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { gearInformationAllTroops } from "./herogear"
+import {createContext, useContext} from 'react';
+
 
 const HunterHeroGearFillIn = () => {
     //setState
@@ -100,6 +103,10 @@ const HunterHeroGearFillIn = () => {
     const [amountHeroGearNeeded, setAmountHeroGearNeeded] = useState(0)
     const [amountHeroGearDesignNeeded, setAmountHeroGearDesignNeeded] = useState(0)
 
+
+    const [gearInfo, setgearInfo] = useContext(gearInformationAllTroops)
+
+
     let setHeroGearDesign = 0 
     let setGeardesign = 0
     let setHeropart = 0 
@@ -128,16 +135,7 @@ const HunterHeroGearFillIn = () => {
     }
     
     useEffect(()=> {
-        console.log('index', index)
-    },[index])
-
-    useEffect(()=> {
-        console.log('heroparts', heroparts)
-    },[heroparts])
-
-    useEffect(()=> {
-        console.log('geardesign', geardesign)
-    },[geardesign])
+    },[index,heroparts,geardesign])
 
     
     const handleClickToFindWhatNeed = (event) => {
@@ -190,25 +188,16 @@ const HunterHeroGearFillIn = () => {
     }
 
     useEffect(() => {
-        console.log('secondIndex', secondIndex)
-    },[secondIndex])
+    },[secondIndex,heropartswanttoupgrade,geardesignwanttoupgrade,amountHeroGearNeeded,amountHeroGearDesignNeeded])
 
-    useEffect(() => {
-        console.log('heropartswanttoupgrade', heropartswanttoupgrade)
-    },[heropartswanttoupgrade])
+    const handleClick = (event) => {
+        event.preventDefault()
+        setgearInfo({
+            hunterherogear : amountHeroGearNeeded,
+            hunterherodesign: amountHeroGearDesignNeeded,
 
-    useEffect(() => {
-        console.log('geardesignwanttoupgrade', geardesignwanttoupgrade)
-    },[geardesignwanttoupgrade])
-
-    useEffect(()=> {
-        console.log('total amount needed' ,amountHeroGearNeeded )
-    }, [amountHeroGearNeeded])
-    
-    useEffect(()=> {
-        console.log('total amount needed' ,amountHeroGearDesignNeeded )
-    }, [amountHeroGearDesignNeeded])
-
+        })
+    }
     return (
         <div>
             <h1>Hunter Hero Gear Upgrade</h1>
@@ -279,6 +268,8 @@ const HunterHeroGearFillIn = () => {
                     <h3> You need : {amountHeroGearNeeded} Hero Gear to upgrade</h3>
 
                     <h3> You Need : {amountHeroGearDesignNeeded} Hero Design to upgrade</h3>
+
+                    <button onClick = { handleClick }> Submit </button>
                 </div>
             </form>
         </div>
