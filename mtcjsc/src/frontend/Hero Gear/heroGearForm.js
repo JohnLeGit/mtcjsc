@@ -87,21 +87,47 @@ const HeroGearFillIn = () => {
 
     })
     const [currentInfantryGear, setCurrentInfantryFear] = useState(0);
+    // const [heropart, setHeropart] = useState(0)
+    // const [geardesign, setGeardesign] = useState(0)
 
-
-    //Handle when click submit on dropdown -> it shows the value on frontend
-    const handleSubmitHeroGearForInfantry = (event) => {
+    let setHeropart = 0 
+    let setGeardesign = 0
+    let findIndex = 0
+    //Handle click to grab the value from dropdown to store it in event.target
+    const handleClickForSetHeroGear = (event) => {
         event.preventDefault()
-        const clickValue = heroGearObj[setCurrentInfantryFear]
-        console.log(`click value chosen : ${clickValue}`  )
+        setCurrentInfantryFear(event.target.value)
+        let array = Object.entries(heroGearObj)
+        console.log(array)
+        for ( let i = 0 ; i < array.length; i++){
+            if(array[i][0] === event.target.value){
+                findIndex = i
+                let innerArray = Object.values(array[i][1])
+                console.log(innerArray)
+            }
+        }
+        console.log(`Inside handleClickForSetHeroGear : ${setCurrentInfantryFear} and ${event.target.value};` )
+        console.log('heropart' , setHeropart)
+        // console.log(findIndex)
     }
 
+    //
+    const handleClickToFindWhatNeed = (event) => {
+        event.preventDefault()
+        let array = Object.entries(heroGearObj)
+        console.log(array, Array.isArray(array), array.length)
+        console.log(heroGearObj[currentInfantryGear])
+        for( let i =0 ; i < array.length; i++ ){
+            console.log(array[i][1])
+        }
+    }
     return (
         <div>
             <h1> Testing </h1>
-            <form>
-                <h3>Infantry</h3>
-                <select name = "herogearselection" id = 'herogearinformation'>
+            <form >
+                <label>
+                    Select your current infantry hero gear level:
+                    <select value = {currentInfantryGear} onChange = {handleClickForSetHeroGear}>
                     <option value = "white1star" id = '1'>White 1*</option>
                     <option value = "white2star" id = '2'>White 2*</option>
                     <option value = "white3star" id = '3'>White 3*</option>
@@ -122,14 +148,39 @@ const HeroGearFillIn = () => {
                     <option value = "orange3star">Orange 3*</option>
                     <option value = "orange4star">Orange 4*</option>
                     <option value = "orange5star">Orange 5*</option>
-                </select>
-                    <button onClick = {() => setCurrentInfantryFear(
-                        heroGearObj.blue1star.heropart
-                    )}>Submit</button>
-                    <div>
-                        <h1> You current Gear</h1>
-                        <p>{currentInfantryGear}</p>
-                    </div>
+                    </select>
+                </label>
+          
+                 <div>
+                    Your current gear is: {JSON.stringify(currentInfantryGear)} with {JSON.stringify(heroGearObj[currentInfantryGear])}
+                 </div>
+                 <h3>What Level do you want to upgrade to</h3>
+                 <label>
+                    Select your current infantry hero gear level:
+                    <select onChange = {handleClickToFindWhatNeed}>
+                    <option value = "white1star" id = '1'>White 1*</option>
+                    <option value = "white2star" id = '2'>White 2*</option>
+                    <option value = "white3star" id = '3'>White 3*</option>
+                    <option value = "green1star" id = '4'>Green 1*</option>
+                    <option value = "green2star" id = '5'>Green 2*</option>
+                    <option value = "green3star" id = '6'>Green 3*</option>
+                    <option value = "blue1star" id = '7'>Blue 1*</option>
+                    <option value = "blue2star">Blue 2*</option>
+                    <option value = "blue3star">Blue 3*</option>
+                    <option value = "blue4star">Blue 4*</option>
+                    <option value = "purple1star">Purple 1*</option>
+                    <option value = "purple2star">Purple 2*</option>
+                    <option value = "purple3star">Purple 3*</option>
+                    <option value = "purple4star">Purple 4*</option>
+                    <option value = "purple5star">Purple 5*</option>
+                    <option value = "orange1star">Orange 1*</option>
+                    <option value = "orange2star">Orange 2*</option>
+                    <option value = "orange3star">Orange 3*</option>
+                    <option value = "orange4star">Orange 4*</option>
+                    <option value = "orange5star">Orange 5*</option>
+                    </select>
+                </label>
+
                 <h3>Hunter</h3>
                 <select name = "herogearselection" id = 'herogearinformation'>
                     <option value = "white">White 1*</option>
