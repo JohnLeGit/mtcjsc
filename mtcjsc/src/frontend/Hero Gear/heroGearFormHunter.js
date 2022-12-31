@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// import { gearInformationAllTroops } from "./herogear"
-// import {createContext, useContext} from 'react';
+import { gearInformationAllTroops } from "./herogear"
+import {createContext, useContext} from 'react';
 
 
 const HunterHeroGearFillIn = () => {
@@ -104,7 +104,7 @@ const HunterHeroGearFillIn = () => {
     const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesignNeeded] = useState(0)
 
 
-    // const [gearInfo, setgearInfo] = useContext(gearInformationAllTroops)
+    const [gearInfo, setgearInfo] = useContext(gearInformationAllTroops)
 
 
     let setHerohunterGearDesign = 0 
@@ -185,14 +185,16 @@ const HunterHeroGearFillIn = () => {
     useEffect(() => {
     },[hunterSecondhunterIndex,hunterheropartwanttoupgrade,hunterhunterGearDesignwanttoupgrade,hunterAmountHeroGearNeeded,hunterAmountHerohunterGearDesignNeeded])
 
-    // const handleClick = (event) => {
-    //     event.preventDefault()
-    //     setgearInfo({
-    //         hunterherogear : hunterAmountHeroGearNeeded,
-    //         hunterherodesign: hunterAmountHerohunterGearDesignNeeded,
+    const handleClick = (event) => {
+        event.preventDefault()
+        setgearInfo({
+            infantryherogear: gearInfo.infantryherogear,
+            infrantryherodesign: gearInfo.infrantryherodesign,
+            hunterherogear : hunterAmountHeroGearNeeded,
+            hunterherodesign: hunterAmountHerohunterGearDesignNeeded,
 
-    //     })
-    // }
+        })
+    }
     return (
         <div>
             <h1>Hunter Hero Gear Upgrade</h1>
@@ -264,7 +266,7 @@ const HunterHeroGearFillIn = () => {
 
                     <h3> You Need : {hunterAmountHerohunterGearDesignNeeded} Hero Design to upgrade</h3>
 
-                    {/* <button onClick = { handleClick }> Submit </button> */}
+                    <button onClick = { handleClick }> Submit </button>
                 </div>
             </form>
         </div>

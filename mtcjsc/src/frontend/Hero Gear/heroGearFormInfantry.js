@@ -178,6 +178,8 @@ const InfantryHeroGearFillIn = () => {
         setgearInfo({
             infantryherogear : amountHeroGearNeeded,
             infrantryherodesign: amountHeroGearDesignNeeded,
+            hunterherogear: gearInfo.hunterherogear,
+            hunterherodesign: gearInfo.hunterherodesign,
         })
     }
     useEffect(() => {

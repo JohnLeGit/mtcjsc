@@ -447,7 +447,7 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
 
 return (
         <div>
-            <h1> Infantry Hero Gear Upgrade </h1>
+            <h1> First item to upgrade </h1>
             <form >
                 <label>
                     Select your current infantry hero gear level:
@@ -510,7 +510,7 @@ return (
 
             <div>
             <hr></hr>
-            <h1>Hunter Hero Gear Upgrade</h1>
+            <h1>Second Item to upgrade</h1>
             <form >
                 <label>
                     Select your current hunter hero gear level:
@@ -585,7 +585,7 @@ return (
         </div>
         <hr></hr>
         <div>
-            <h1>Rider Hero Gear Upgrade</h1>
+            <h1>Third Item to upgrade</h1>
             <form >
                 <label>
                     Select your current hunter hero gear level:
