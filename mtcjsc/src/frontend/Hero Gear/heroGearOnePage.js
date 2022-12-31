@@ -381,6 +381,50 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
     }, [heroGearTotal, heroDesignTotal])
 
 
+
+    //Now for trap time
+    //What we can do is to have a text and click a button and then save the value in a state
+    //Then we display on average how many traps will you need 
+
+    //Problem need to figure out is what if hero design is 0 
+    //Now we just need to add them together to see how many traps will they need
+    //because of that we will need 2 text box
+
+    const [enterHeroGear, setEnterHeroGear] = useState(0)
+    const [enterHeroDesign, setEnterHeroDesign] = useState(0)
+    const [totalEnterForBoth, setTotalEnterForBoth] = useState(0)
+    const [resultString, setResultString] = useState('')
+
+
+    let calculate = 0 
+    //So the condition we need to consider
+
+    //If the math comes out that we have less than or  = to 0 => We need replace the string
+    //else we display the string with the amount of traps we need!
+    const handleClickEnter = (event) => {
+        event.preventDefault()
+        console.log(enterHeroGear,enterHeroDesign)
+        setTotalEnterForBoth(Number(enterHeroDesign) + Number(enterHeroGear))
+
+        // calculate = Number(heroGearTotal) + Number(heroDesignTotal)
+        console.log(totalEnterForBoth, calculate)
+
+        if(Math.floor((Number(heroGearTotal) + Number(heroDesignTotal)) / totalEnterForBoth) <= 0){
+            setResultString(`You have enough resources to update just after 1 trap`)
+        } else {
+            setResultString(`You would need ${Math.floor((Number(heroGearTotal) + Number(heroDesignTotal)) / (Number(enterHeroGear) + Number(enterHeroDesign)))} traps to achieve what you want`)
+        }
+    }
+
+    useEffect(() => {
+        console.log(totalEnterForBoth)
+    },[totalEnterForBoth, resultString])
+
+
+
+
+
+    
 return (
         <div>
             <h1> Infantry Hero Gear Upgrade </h1>
@@ -599,10 +643,35 @@ return (
                 <h3>Total amount you need is : {heroDesignTotal} hero designs</h3>
             </div>
         </div>
+
+        <div>
+            <h3> What is your average amount of hero gear you get each trap</h3>
+            <input placeholder='Hero Gear'
+            onChange={event => setEnterHeroGear(event.target.value)}>
+
+            </input>
+
+            <h3>What is your average amount of hero design you get each trap</h3>
+            <input placeholder='Hero Design'
+            onChange={event => setEnterHeroDesign(event.target.value)}>
+            </input>
+            <button onClick={handleClickEnter}> Submit for Calculation</button>
+            <div>
+            <h2>{resultString}</h2>
+            </div>
+        </div>
         </div>
 
         
     )
 }
+/*
+If we need 2000 
+And each time we gain 1000 
 
+2 times
+
+
+
+*/
 export default AllInOnePage
