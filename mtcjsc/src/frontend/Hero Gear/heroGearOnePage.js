@@ -381,7 +381,31 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
     }, [heroGearTotal, heroDesignTotal])
 
 
+    
+    /*
+    Now we have to consider how much you have in your bags
+    Have to have input from both gear and design of what you currently have in your bags
+    Then from what you have in bags subtract the amount of that you need and update 
+    
+    That would have to go before the calculation
+    */
 
+    const [inbagHeroGear, setInBagHeroGear] = useState(0)
+    const [inbagHeroDesign, setInbagHeroDesign] = useState(0)
+
+    const handleClickInBag = (event) => {
+        event.preventDefault()
+        console.log('in bag hero gear' , inbagHeroGear)
+        console.log('in bag hero design' , inbagHeroDesign)
+        //Checking if total amount you need is < what you currently have => change the string already
+        if(Math.floor(Number(heroGearTotal) + Number(heroDesignTotal)) < Math.floor(Number(inbagHeroGear) + Number(inbagHeroDesign))){
+            alert(`What you have in your bags already enough for you to upgrade whatever you need`)
+        }
+    }
+
+    useEffect(() => {
+
+    },[inbagHeroGear, inbagHeroDesign])
     //Now for trap time
     //What we can do is to have a text and click a button and then save the value in a state
     //Then we display on average how many traps will you need 
@@ -407,13 +431,27 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
         setTotalEnterForBoth(Number(enterHeroDesign) + Number(enterHeroGear))
 
         // calculate = Number(heroGearTotal) + Number(heroDesignTotal)
-        console.log(totalEnterForBoth, calculate)
 
-        if(Math.floor((Number(heroGearTotal) + Number(heroDesignTotal)) / totalEnterForBoth) <= 0){
-            setResultString(`You have enough resources to update just after 1 trap`)
-        } else {
-            setResultString(`You would need ${Math.floor((Number(heroGearTotal) + Number(heroDesignTotal)) / (Number(enterHeroGear) + Number(enterHeroDesign)))} traps to achieve what you want`)
-        }
+        // **** POSSIBLE BUG, HAVE TO FIND WHICHEVER IS BIGGER THEN WE COMPARE
+        //Total amount - input in inventory / average amount
+        //Then take whatever is bigger which is the max.
+
+
+        // if(Math.floor(((Number(heroGearTotal) + Number(heroDesignTotal)) - (Number(inbagHeroGear) + Number(inbagHeroDesign))) / totalEnterForBoth) <= 0){
+        //     setResultString(`******You have enough resources to update just after 1 trap*****`)
+        // } else {
+        //     setResultString(`*****You would need 
+        //     ${Math.floor(((Number(heroGearTotal) + Number(heroDesignTotal)) - (Number(inbagHeroGear) + Number(inbagHeroDesign))) / (Number(enterHeroGear) + Number(enterHeroDesign)))} 
+        //     traps to achieve what you want*****`)
+        // }
+
+        let heroGearDifference = Math.ceil(((Number(heroGearTotal) - Number(inbagHeroGear)) / Number(enterHeroGear))) 
+        let heroDesignDifference = Math.ceil(((Number(heroDesignTotal) - Number(inbagHeroDesign)) / Number(enterHeroDesign)))
+
+        let result = Math.max(heroGearDifference, heroDesignDifference)
+
+        setResultString(`******** YOU NEED ${result} traps *******`)
+
     }
 
     useEffect(() => {
@@ -423,8 +461,6 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
 
 
 
-
-    
 return (
         <div>
             <h1> Infantry Hero Gear Upgrade </h1>
@@ -565,7 +601,7 @@ return (
         </div>
         <hr></hr>
         <div>
-            <h1>Hunter Hero Gear Upgrade</h1>
+            <h1>Rider Hero Gear Upgrade</h1>
             <form >
                 <label>
                     Select your current hunter hero gear level:
@@ -643,19 +679,37 @@ return (
                 <h3>Total amount you need is : {heroDesignTotal} hero designs</h3>
             </div>
         </div>
+        <div>
+            <hr></hr>
+            <h3> How much do you currently have in your Inventory</h3>
+            <input placeholder='Amount Hero Gears'
+            onChange={event => setInBagHeroGear(event.target.value)}>
+            </input>
 
+            <input placeholder='Amount Hero Design'
+            onChange={event => setInbagHeroDesign(event.target.value)}>
+            </input>
+            <div>
+            <button onClick={handleClickInBag}>Submit For What You Have In Bags</button>
+            </div>
+            <h3>You currently have {inbagHeroGear} Hero Gears In Your Inventory</h3>
+            <h3>You currently have {inbagHeroDesign} Hero Design In Your Inventory</h3>
+
+        </div>
+        <hr></hr>
         <div>
             <h3> What is your average amount of hero gear you get each trap</h3>
             <input placeholder='Hero Gear'
             onChange={event => setEnterHeroGear(event.target.value)}>
-
             </input>
 
             <h3>What is your average amount of hero design you get each trap</h3>
             <input placeholder='Hero Design'
             onChange={event => setEnterHeroDesign(event.target.value)}>
             </input>
+            <div>
             <button onClick={handleClickEnter}> Submit for Calculation</button>
+            </div>
             <div>
             <h2>{resultString}</h2>
             </div>
@@ -666,10 +720,11 @@ return (
     )
 }
 /*
-If we need 2000 
-And each time we gain 1000 
+We need 6534 hero gears and 555 hero designs = 7089
 
-2 times
+But you already have in bags 2534 => 4555
+
+YOu have 1035 each trap 
 
 
 
