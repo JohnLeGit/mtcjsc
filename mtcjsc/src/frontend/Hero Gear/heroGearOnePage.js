@@ -416,7 +416,6 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
     const [resultString, setResultString] = useState('')
 
 
-    let calculate = 0 
     //So the condition we need to consider
 
     //If the math comes out that we have less than or  = to 0 => We need replace the string
