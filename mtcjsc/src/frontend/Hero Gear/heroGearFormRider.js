@@ -5,39 +5,39 @@ const RiderHeroGearFillIn = () => {
     const [heroGearObj, setheroGearObj] = useState({
         white1star : {
             heropart : 25,
-            geardesign : 0
+            riderGearDesign : 0
         } ,
         white2star : {
             heropart : 25,
-            geardesign : 0
+            riderGearDesign : 0
         } ,
         white3star : {
             heropart : 70,
-            geardesign : 0
+            riderGearDesign : 0
         } ,
         green1star : {
             heropart : 115,
-            geardesign : 0
+            riderGearDesign : 0
         } ,
         green2star : {
             heropart : 225,
-            geardesign : 0
+            riderGearDesign : 0
         } ,
         green3star : {
             heropart : 310,
-            geardesign : 0
+            riderGearDesign : 0
         } ,
         blue1star : {
             heropart : 330,
-            geardesign : 0
+            riderGearDesign : 0
         } ,
         blue2star : {
             heropart : 40,
-            geardesign : 63
+            riderGearDesign : 63
         } ,
         blue3star : {
             heropart : 55,
-            geardesign : 87
+            riderGearDesign : 87
         } ,
         blue4star : {
             heropart : 1008,
@@ -88,134 +88,99 @@ const RiderHeroGearFillIn = () => {
     })
     const [currentRiderGear, setcurrentRiderGear] = useState(0);
     const [currentChooseRiderGear, setcurrentChooseRiderGear] = useState(0);
-    const [index, setIndex] = useState(0)
+    const [riderIndex, setriderIndex] = useState(0)
     //--------YOUR GEAR STATE -----------
-    const [heroparts, setHeroparts] = useState(0)
-    const [geardesign, setGeardesigns] = useState(0)
+    const [riderHeroParts, setriderHeroParts] = useState(0)
+    const [riderGearDesign, setriderGearDesigns] = useState(0)
     //--------YOUR GEAR STATE WANT TO UPGRADE TO -----------
-    const [secondIndex, setSecondIndex] = useState(0)
-    const [heropartswanttoupgrade, setHeropartswanttoupgrade] = useState(0)
-    const [geardesignwanttoupgrade, setGeardesignwanttoupgrade] = useState(0)
+    const [secondriderIndex, setSecondriderIndex] = useState(0)
+    const [riderHeroPartswanttoupgrade, setriderHeroPartswanttoupgrade] = useState(0)
+    const [riderGearDesignwanttoupgrade, setriderGearDesignwanttoupgrade] = useState(0)
     //--------YOUR GEAR STATE WANT TO UPGRADE TO TOTAL -----------
-    const [amountHeroGearNeeded, setAmountHeroGearNeeded] = useState(0)
-    const [amountHeroGearDesignNeeded, setAmountHeroGearDesignNeeded] = useState(0)
+    const [riderAmountOfHeroGearNeeded, setriderAmountOfHeroGearNeeded] = useState(0)
+    const [amountHeroriderGearDesignNeeded, setAmountHeroriderGearDesignNeeded] = useState(0)
 
-    let setHeroGearDesign = 0 
-    let setGeardesign = 0
+ 
+    let setriderGearDesign = 0
     let setHeropart = 0 
-    let indexForTracking = 0 
+    let riderIndexForTracking = 0 
     //Handle click to grab the value from dropdown to store it in event.target
-    const handleClickForSetHeroGear = (event) => {
+    const handleClickForRiderSetHeroGear = (event) => {
         event.preventDefault()
         setcurrentRiderGear(event.target.value)
         let array = Object.entries(heroGearObj)
-        console.log(array)
         for ( let i = 0 ; i < array.length; i++){
             if(array[i][0] === event.target.value){
                 let innerArray = Object.values(array[i][1])
                 setHeropart = innerArray[0]
-                setGeardesign = innerArray[1]
+                setriderGearDesign = innerArray[1]
                 
-                setIndex(i)
-                setHeroparts(setHeropart)
-                setGeardesigns(setGeardesign)
+                setriderIndex(i)
+                setriderHeroParts(setHeropart)
+                setriderGearDesigns(setriderGearDesign)
             }
         }
 
-        // console.log(`Inside handleClickForSetHeroGear : ${setcurrentRiderGear} and ${event.target.value};` )
-        console.log('heropart' , setHeropart)
-        console.log('hero gear design' , setHeroGearDesign)
+        // console.log(`Inside handleClickForRiderSetHeroGear : ${setcurrentRiderGear} and ${event.target.value};` )
     }
     
     useEffect(()=> {
-        console.log('index', index)
-    },[index])
+    },[riderIndex, riderHeroParts,riderGearDesign])
 
-    useEffect(()=> {
-        console.log('heroparts', heroparts)
-    },[heroparts])
-
-    useEffect(()=> {
-        console.log('geardesign', geardesign)
-    },[geardesign])
-
-    
-    const handleClickToFindWhatNeed = (event) => {
+    const handleClickToFindWhatNeedRider = (event) => {
         event.preventDefault()
         setcurrentChooseRiderGear(event.target.value)
         let arraySecond = Object.entries(heroGearObj)
-        console.log(arraySecond, Array.isArray(arraySecond), arraySecond.length)
-        console.log(heroGearObj[currentRiderGear])
         for( let i =0 ; i < arraySecond.length; i++ ){
             if(arraySecond[i][0] === event.target.value){
-                setSecondIndex(i)
-                indexForTracking = i 
+                setSecondriderIndex(i)
+                riderIndexForTracking = i 
                 let innerSecondArray = Object.values(arraySecond[i][1])
 
-                setHeropartswanttoupgrade(innerSecondArray[0])
-                setGeardesignwanttoupgrade(innerSecondArray[1])
+                setriderHeroPartswanttoupgrade(innerSecondArray[0])
+                setriderGearDesignwanttoupgrade(innerSecondArray[1])
 
             }
         }
         let heroGearStored = []
-        let heroPartStored = []
+        let riderHeroPartstored = []
         let heroGearTotal = 0 
         let heroPartTotal = 0 
-        for ( let i = index + 1; i <= indexForTracking ; i++){
+        for ( let i = riderIndex + 1; i <= riderIndexForTracking ; i++){
             console.log(arraySecond[i])
-            //arraySecond[i][1] it must be at 1 to retrieve {heropart: ... ; geardesign...}
+            //arraySecond[i][1] it must be at 1 to retrieve {heropart: ... ; riderGearDesign...}
 
             let innerSecondArray = Object.values(arraySecond[i][1])
             heroGearStored.push(innerSecondArray[0])
-            heroPartStored.push(innerSecondArray[1])
-
-            console.log(heroGearStored)
-            console.log(heroPartStored)
+            riderHeroPartstored.push(innerSecondArray[1])
 
         }
 
         for ( let i = 0 ; i < heroGearStored.length; i++){
             heroGearTotal += heroGearStored[i]
-            heroPartTotal += heroPartStored[i]
+            heroPartTotal += riderHeroPartstored[i]
         }
+        setriderAmountOfHeroGearNeeded(heroGearTotal)
+        setAmountHeroriderGearDesignNeeded(heroPartTotal)
 
-        console.log(heroGearTotal)
-        console.log(heroPartTotal)
-        setAmountHeroGearNeeded(heroGearTotal)
-        setAmountHeroGearDesignNeeded(heroPartTotal)
-
-        if(indexForTracking <= index){
+        if(riderIndexForTracking <= riderIndex){
             alert(`You already reach or pass this level`)
         }
     }
 
     useEffect(() => {
-        console.log('secondIndex', secondIndex)
-    },[secondIndex])
-
-    useEffect(() => {
-        console.log('heropartswanttoupgrade', heropartswanttoupgrade)
-    },[heropartswanttoupgrade])
-
-    useEffect(() => {
-        console.log('geardesignwanttoupgrade', geardesignwanttoupgrade)
-    },[geardesignwanttoupgrade])
-
-    useEffect(()=> {
-        console.log('total amount needed' ,amountHeroGearNeeded )
-    }, [amountHeroGearNeeded])
-    
-    useEffect(()=> {
-        console.log('total amount needed' ,amountHeroGearDesignNeeded )
-    }, [amountHeroGearDesignNeeded])
-
+    },[secondriderIndex, 
+        riderHeroPartswanttoupgrade, 
+        riderGearDesignwanttoupgrade,
+        riderAmountOfHeroGearNeeded,
+        amountHeroriderGearDesignNeeded])
     return (
         <div>
             <h1>Hunter Hero Gear Upgrade</h1>
             <form >
                 <label>
                     Select your current hunter hero gear level:
-                    <select value = {currentRiderGear} onChange = {handleClickForSetHeroGear}>
+                    <select value = {currentRiderGear} onChange = {handleClickForRiderSetHeroGear}>
                     <option value = "white1star" id = '1'>White 1*</option>
                     <option value = "white2star" id = '2'>White 2*</option>
                     <option value = "white3star" id = '3'>White 3*</option>
@@ -239,15 +204,15 @@ const RiderHeroGearFillIn = () => {
                     </select>
                 </label>       
                     {/* <div>
-                        <h3>You hero gear parts currently: {heroparts}  </h3> 
+                        <h3>You hero gear parts currently: {riderHeroParts}  </h3> 
                     </div>
                     <div>
-                        <h3>You hero gear design currently: {geardesign} </h3>
+                        <h3>You hero gear design currently: {riderGearDesign} </h3>
                  </div> */}
                  <h3>What Level do you want to upgrade to</h3>
                  <label>
                     Select your current hunter hero gear level:
-                    <select value = {currentChooseRiderGear} onChange = {handleClickToFindWhatNeed}>
+                    <select value = {currentChooseRiderGear} onChange = {handleClickToFindWhatNeedRider}>
                     <option value = "white1star" id = '1'>White 1*</option>
                     <option value = "white2star" id = '2'>White 2*</option>
                     <option value = "white3star" id = '3'>White 3*</option>
@@ -271,14 +236,14 @@ const RiderHeroGearFillIn = () => {
                     </select>
                 </label>
                 {/* <div>
-                    <h3> Hero Gear you want to upgrade to : {heropartswanttoupgrade}</h3>
-                    <h3>Hero Gear you want to upgrade to : {geardesignwanttoupgrade}</h3>
+                    <h3> Hero Gear you want to upgrade to : {riderHeroPartswanttoupgrade}</h3>
+                    <h3>Hero Gear you want to upgrade to : {riderGearDesignwanttoupgrade}</h3>
                 </div> */}
 
                 <div>
-                    <h3> You need : {amountHeroGearNeeded} Hero Gear to upgrade</h3>
+                    <h3> You need : {riderAmountOfHeroGearNeeded} Hero Gear to upgrade</h3>
 
-                    <h3> You Need : {amountHeroGearDesignNeeded} Hero Design to upgrade</h3>
+                    <h3> You Need : {amountHeroriderGearDesignNeeded} Hero Design to upgrade</h3>
                 </div>
             </form>
         </div>
