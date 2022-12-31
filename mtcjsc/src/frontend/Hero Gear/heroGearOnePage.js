@@ -96,7 +96,7 @@ const AllInOnePage = () => {
     const [secondIndex, setSecondIndex] = useState(0)
     const [heropartswanttoupgrade, setHeropartswanttoupgrade] = useState(0)
     const [geardesignwanttoupgrade, setGeardesignwanttoupgrade] = useState(0)
-    //--------YOUR GEAR STATE WANT TO UPGRADE TO TOTAL -----------
+    //--------YOUR GEAR STATE WANT TO UPGRADE TO heroGearTotal -----------
     const [amountHeroGearNeeded, setAmountHeroGearNeeded] = useState(0)
     const [amountHeroGearDesignNeeded, setAmountHeroGearDesignNeeded] = useState(0)
 
@@ -143,8 +143,8 @@ const AllInOnePage = () => {
         }
         let heroGearStored = []
         let heroPartStored = []
-        let heroGearTotal = 0 
-        let heroPartTotal = 0 
+        let heroGearheroGearTotal = 0 
+        let heroPartheroGearTotal = 0 
         for ( let i = index + 1; i <= indexForTracking ; i++){
             //arraySecond[i][1] it must be at 1 to retrieve {heropart: ... ; geardesign...}
 
@@ -155,11 +155,11 @@ const AllInOnePage = () => {
         }
 
         for ( let i = 0 ; i < heroGearStored.length; i++){
-            heroGearTotal += heroGearStored[i]
-            heroPartTotal += heroPartStored[i]
+            heroGearheroGearTotal += heroGearStored[i]
+            heroPartheroGearTotal += heroPartStored[i]
         }
-        setAmountHeroGearNeeded(heroGearTotal)
-        setAmountHeroGearDesignNeeded(heroPartTotal)
+        setAmountHeroGearNeeded(heroGearheroGearTotal)
+        setAmountHeroGearDesignNeeded(heroPartheroGearTotal)
 
         if(indexForTracking <= index){
             alert(`You already reach or pass this level`)
@@ -187,7 +187,7 @@ const [hunterGearDesign, sethunterGearDesigns] = useState(0)
 const [hunterSecondhunterIndex, sethunterSecondhunterIndex] = useState(0)
 const [hunterheropartwanttoupgrade, sethunterheropartwanttoupgrade] = useState(0)
 const [hunterhunterGearDesignwanttoupgrade, sethunterhunterGearDesignwanttoupgrade] = useState(0)
-//--------YOUR GEAR STATE WANT TO UPGRADE TO TOTAL -----------
+//--------YOUR GEAR STATE WANT TO UPGRADE TO heroGearTotal -----------
 const [hunterAmountHeroGearNeeded, sethunterAmountHeroGearNeeded] = useState(0)
 const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesignNeeded] = useState(0)
 
@@ -218,7 +218,9 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
     }
     
     useEffect(()=> {
-    },[hunterIndex,hunterHeroParts,hunterGearDesign])
+    },[hunterIndex,
+        hunterHeroParts,
+        hunterGearDesign])
 
     
     const handleClickToFindWhatNeedHunter = (event) => {
@@ -238,8 +240,8 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
         }
         let heroGearStored = []
         let hunterHeroPartstored = []
-        let heroGearTotal = 0 
-        let heroPartTotal = 0 
+        let heroGearheroGearTotal = 0 
+        let heroPartheroGearTotal = 0 
         for ( let i = hunterIndex + 1; i <= hunterIndexForTracking ; i++){
             //arraySecond[i][1] it must be at 1 to retrieve {heropart: ... ; hunterGearDesign...}
 
@@ -250,11 +252,11 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
         }
 
         for ( let i = 0 ; i < heroGearStored.length; i++){
-            heroGearTotal += heroGearStored[i]
-            heroPartTotal += hunterHeroPartstored[i]
+            heroGearheroGearTotal += heroGearStored[i]
+            heroPartheroGearTotal += hunterHeroPartstored[i]
         }
-        sethunterAmountHeroGearNeeded(heroGearTotal)
-        sethunterAmountHerohunterGearDesignNeeded(heroPartTotal)
+        sethunterAmountHeroGearNeeded(heroGearheroGearTotal)
+        sethunterAmountHerohunterGearDesignNeeded(heroPartheroGearTotal)
 
         if(hunterIndexForTracking <= hunterIndex){
             alert(`You already reach or pass this level`)
@@ -262,7 +264,11 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
     }
 
     useEffect(() => {
-    },[hunterSecondhunterIndex,hunterheropartwanttoupgrade,hunterhunterGearDesignwanttoupgrade,hunterAmountHeroGearNeeded,hunterAmountHerohunterGearDesignNeeded])
+    },[hunterSecondhunterIndex,
+        hunterheropartwanttoupgrade,
+        hunterhunterGearDesignwanttoupgrade,
+        hunterAmountHeroGearNeeded,
+        hunterAmountHerohunterGearDesignNeeded])
  
 
 //****************------------------------------------------------------------------- RIDER ------------------------------------------------------------------------------- */
@@ -276,7 +282,7 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
     const [secondriderIndex, setSecondriderIndex] = useState(0)
     const [riderHeroPartswanttoupgrade, setriderHeroPartswanttoupgrade] = useState(0)
     const [riderGearDesignwanttoupgrade, setriderGearDesignwanttoupgrade] = useState(0)
-    //--------YOUR GEAR STATE WANT TO UPGRADE TO TOTAL -----------
+    //--------YOUR GEAR STATE WANT TO UPGRADE TO heroGearTotal -----------
     const [riderAmountOfHeroGearNeeded, setriderAmountOfHeroGearNeeded] = useState(0)
     const [amountHeroriderGearDesignNeeded, setAmountHeroriderGearDesignNeeded] = useState(0)
 
@@ -304,7 +310,9 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
     }
     
     useEffect(()=> {
-    },[riderIndex, riderHeroParts,riderGearDesign])
+    },[riderIndex, 
+        riderHeroParts,
+        riderGearDesign])
 
     const handleClickToFindWhatNeedRider = (event) => {
         event.preventDefault()
@@ -323,8 +331,8 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
         }
         let heroGearStored = []
         let riderHeroPartstored = []
-        let heroGearTotal = 0 
-        let heroPartTotal = 0 
+        let heroGearheroGearTotal = 0 
+        let heroPartheroGearTotal = 0 
         for ( let i = riderIndex + 1; i <= riderIndexForTracking ; i++){
            
             //arraySecond[i][1] it must be at 1 to retrieve {heropart: ... ; riderGearDesign...}
@@ -336,11 +344,11 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
         }
 
         for ( let i = 0 ; i < heroGearStored.length; i++){
-            heroGearTotal += heroGearStored[i]
-            heroPartTotal += riderHeroPartstored[i]
+            heroGearheroGearTotal += heroGearStored[i]
+            heroPartheroGearTotal += riderHeroPartstored[i]
         }
-        setriderAmountOfHeroGearNeeded(heroGearTotal)
-        setAmountHeroriderGearDesignNeeded(heroPartTotal)
+        setriderAmountOfHeroGearNeeded(heroGearheroGearTotal)
+        setAmountHeroriderGearDesignNeeded(heroPartheroGearTotal)
 
         if(riderIndexForTracking <= riderIndex){
             alert(`You already reach or pass this level`)
@@ -353,6 +361,25 @@ const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesi
         riderGearDesignwanttoupgrade,
         riderAmountOfHeroGearNeeded,
         amountHeroriderGearDesignNeeded])
+
+
+
+// NOW FIND UPDATE heroGearTotal
+
+    const [heroGearTotal, setheroGearTotal]  = useState(0)
+    const [heroDesignTotal, setheroDesignTotal]  = useState(0)
+
+    const handleSubmitheroGearTotal = (event) => {
+        event.preventDefault()
+        setheroGearTotal(riderAmountOfHeroGearNeeded + amountHeroGearNeeded + hunterAmountHeroGearNeeded)
+        setheroDesignTotal(amountHeroGearDesignNeeded + hunterAmountHerohunterGearDesignNeeded + amountHeroriderGearDesignNeeded )
+    }
+
+    useEffect(() => {
+        console.log('setheroGearTotal:' , heroGearTotal)
+        console.log('setheroDesignTotal', heroDesignTotal)
+    }, [heroGearTotal, heroDesignTotal])
+
 
 return (
         <div>
@@ -418,7 +445,7 @@ return (
             </form>
 
             <div>
-            --------------------------------------------------------------------------------------------------------------------------------------------
+            <hr></hr>
             <h1>Hunter Hero Gear Upgrade</h1>
             <form >
                 <label>
@@ -492,7 +519,7 @@ return (
                 </div>
             </form>
         </div>
-        --------------------------------------------------------------------------------------------------------------------------------------------
+        <hr></hr>
         <div>
             <h1>Hunter Hero Gear Upgrade</h1>
             <form >
@@ -564,6 +591,13 @@ return (
                     <h3> You Need : {amountHeroriderGearDesignNeeded} Hero Design to upgrade</h3>
                 </div>
             </form>
+
+            <div>
+                <hr></hr>
+                <button onClick={handleSubmitheroGearTotal}> Submit</button>
+                <h3>Total amount you need is : {heroGearTotal} hero gears</h3>
+                <h3>Total amount you need is : {heroDesignTotal} hero designs</h3>
+            </div>
         </div>
         </div>
 
