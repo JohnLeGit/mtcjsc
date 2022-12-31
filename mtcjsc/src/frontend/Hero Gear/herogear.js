@@ -8,6 +8,9 @@ import OnePage from './heroGearOnePage'
 
 // export const gearInformationAllTroops = createContext()
 
+import HeroGearInformation from './heroGearFormInfantry';
+
+
 function HeroGear() {
   // const [gearInfo, setgearInfo] = useState({
   //   infantryherogear : 0,
