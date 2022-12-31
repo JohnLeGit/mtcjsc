@@ -1,50 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import {createContext, useContext} from 'react';
-import { gearInformationAllTroops } from "./herogear"
+// import { gearInformationAllTroops } from "./herogear"
+// import {createContext, useContext} from 'react';
 
-const InfantryHeroGearFillIn = () => {
+
+const HunterHeroGearFillIn = () => {
     //setState
-    
     const [heroGearObj, setheroGearObj] = useState({
         white1star : {
             heropart : 25,
-            geardesign : 0
+            hunterGearDesign : 0
         } ,
         white2star : {
             heropart : 25,
-            geardesign : 0
+            hunterGearDesign : 0
         } ,
         white3star : {
             heropart : 70,
-            geardesign : 0
+            hunterGearDesign : 0
         } ,
         green1star : {
             heropart : 115,
-            geardesign : 0
+            hunterGearDesign : 0
         } ,
         green2star : {
             heropart : 225,
-            geardesign : 0
+            hunterGearDesign : 0
         } ,
         green3star : {
             heropart : 310,
-            geardesign : 0
+            hunterGearDesign : 0
         } ,
         blue1star : {
             heropart : 330,
-            geardesign : 0
+            hunterGearDesign : 0
         } ,
         blue2star : {
             heropart : 40,
-            geardesign : 63
+            hunterGearDesign : 63
         } ,
         blue3star : {
             heropart : 55,
-            geardesign : 87
+            hunterGearDesign : 87
         } ,
         blue4star : {
             heropart : 1008,
-            geardesign : 35
+            hunterGearDesign : 35
         } ,
         purple1star : {
             heropart : 1473,
@@ -89,108 +89,117 @@ const InfantryHeroGearFillIn = () => {
 
 
     })
-    const [currentInfantryGear, setCurrentInfantryFear] = useState(0);
-    const [currentChooseInfantryGear, setCurrentChooseInfantryFear] = useState(0);
-    const [index, setIndex] = useState(0)
+    const [currentHunterGear, setCurrentHunterGear] = useState(0);
+    const [currentChooseHunterGear, setCurrentChooseHunterGear] = useState(0);
+    const [hunterIndex, sethunterIndex] = useState(0)
     //--------YOUR GEAR STATE -----------
-    const [heroparts, setHeroparts] = useState(0)
-    const [geardesign, setGeardesigns] = useState(0)
+    const [hunterHeroParts, sethunterHeroParts] = useState(0)
+    const [hunterGearDesign, sethunterGearDesigns] = useState(0)
     //--------YOUR GEAR STATE WANT TO UPGRADE TO -----------
-    const [secondIndex, setSecondIndex] = useState(0)
-    const [heropartswanttoupgrade, setHeropartswanttoupgrade] = useState(0)
-    const [geardesignwanttoupgrade, setGeardesignwanttoupgrade] = useState(0)
+    const [hunterSecondhunterIndex, sethunterSecondhunterIndex] = useState(0)
+    const [hunterheropartwanttoupgrade, sethunterheropartwanttoupgrade] = useState(0)
+    const [hunterhunterGearDesignwanttoupgrade, sethunterhunterGearDesignwanttoupgrade] = useState(0)
     //--------YOUR GEAR STATE WANT TO UPGRADE TO TOTAL -----------
-    const [amountHeroGearNeeded, setAmountHeroGearNeeded] = useState(0)
-    const [amountHeroGearDesignNeeded, setAmountHeroGearDesignNeeded] = useState(0)
-
-    //useContect implimentation
-    const [gearInfo, setgearInfo] = useContext(gearInformationAllTroops)
+    const [hunterAmountHeroGearNeeded, sethunterAmountHeroGearNeeded] = useState(0)
+    const [hunterAmountHerohunterGearDesignNeeded, sethunterAmountHerohunterGearDesignNeeded] = useState(0)
 
 
-    let setHeroGearDesign = 0 
-    let setGeardesign = 0
-    let setHeropart = 0 
-    let indexForTracking = 0 
+    // const [gearInfo, setgearInfo] = useContext(gearInformationAllTroops)
+
+
+    let setHerohunterGearDesign = 0 
+    let sethunterGearDesign = 0
+    let setHunterHeroPart = 0 
+    let hunterIndexForTracking = 0 
     //Handle click to grab the value from dropdown to store it in event.target
-    const handleClickForSetHeroGear = (event) => {
+    const handleClickForHunterSetHeroGear = (event) => {
         event.preventDefault()
-        setCurrentInfantryFear(event.target.value)
+        setCurrentHunterGear(event.target.value)
         let array = Object.entries(heroGearObj)
+        console.log(array)
         for ( let i = 0 ; i < array.length; i++){
             if(array[i][0] === event.target.value){
                 let innerArray = Object.values(array[i][1])
-                setHeropart = innerArray[0]
-                setGeardesign = innerArray[1]
+                setHunterHeroPart = innerArray[0]
+                sethunterGearDesign = innerArray[1]
                 
-                setIndex(i)
-                setHeroparts(setHeropart)
-                setGeardesigns(setGeardesign)
+                sethunterIndex(i)
+                sethunterHeroParts(setHunterHeroPart)
+                sethunterGearDesigns(sethunterGearDesign)
             }
         }
+
+        // console.log(`Inside handleClickForHunterSetHeroGear : ${setCurrentHunterGear} and ${event.target.value};` )
     }
     
     useEffect(()=> {
-    },[index,heroparts,geardesign])
+    },[hunterIndex,hunterHeroParts,hunterGearDesign])
 
     
-    const handleClickToFindWhatNeed = (event) => {
+    const handleClickToFindWhatNeedHunter = (event) => {
         event.preventDefault()
-        setCurrentChooseInfantryFear(event.target.value)
+        setCurrentChooseHunterGear(event.target.value)
         let arraySecond = Object.entries(heroGearObj)
+        console.log(arraySecond, Array.isArray(arraySecond), arraySecond.length)
+        console.log(heroGearObj[currentHunterGear])
         for( let i =0 ; i < arraySecond.length; i++ ){
             if(arraySecond[i][0] === event.target.value){
-                setSecondIndex(i)
-                indexForTracking = i 
+                sethunterSecondhunterIndex(i)
+                hunterIndexForTracking = i 
                 let innerSecondArray = Object.values(arraySecond[i][1])
 
-                setHeropartswanttoupgrade(innerSecondArray[0])
-                setGeardesignwanttoupgrade(innerSecondArray[1])
+                sethunterheropartwanttoupgrade(innerSecondArray[0])
+                sethunterhunterGearDesignwanttoupgrade(innerSecondArray[1])
 
             }
         }
         let heroGearStored = []
-        let heroPartStored = []
+        let hunterHeroPartstored = []
         let heroGearTotal = 0 
         let heroPartTotal = 0 
-        for ( let i = index + 1; i <= indexForTracking ; i++){
-            //arraySecond[i][1] it must be at 1 to retrieve {heropart: ... ; geardesign...}
+        for ( let i = hunterIndex + 1; i <= hunterIndexForTracking ; i++){
+            console.log(arraySecond[i])
+            //arraySecond[i][1] it must be at 1 to retrieve {heropart: ... ; hunterGearDesign...}
 
             let innerSecondArray = Object.values(arraySecond[i][1])
             heroGearStored.push(innerSecondArray[0])
-            heroPartStored.push(innerSecondArray[1])
+            hunterHeroPartstored.push(innerSecondArray[1])
 
         }
 
         for ( let i = 0 ; i < heroGearStored.length; i++){
             heroGearTotal += heroGearStored[i]
-            heroPartTotal += heroPartStored[i]
+            heroPartTotal += hunterHeroPartstored[i]
         }
-        setAmountHeroGearNeeded(heroGearTotal)
-        setAmountHeroGearDesignNeeded(heroPartTotal)
 
-        if(indexForTracking <= index){
+        console.log(heroGearTotal)
+        console.log(heroPartTotal)
+        sethunterAmountHeroGearNeeded(heroGearTotal)
+        sethunterAmountHerohunterGearDesignNeeded(heroPartTotal)
+
+        if(hunterIndexForTracking <= hunterIndex){
             alert(`You already reach or pass this level`)
         }
     }
-    
-    const handleClick = (event) => {
-        event.preventDefault()
-        setgearInfo({
-            infantryherogear : amountHeroGearNeeded,
-            infrantryherodesign: amountHeroGearDesignNeeded,
-        })
-    }
+
     useEffect(() => {
-    },[secondIndex,heropartswanttoupgrade,geardesignwanttoupgrade,amountHeroGearDesignNeeded])
+    },[hunterSecondhunterIndex,hunterheropartwanttoupgrade,hunterhunterGearDesignwanttoupgrade,hunterAmountHeroGearNeeded,hunterAmountHerohunterGearDesignNeeded])
 
+    // const handleClick = (event) => {
+    //     event.preventDefault()
+    //     setgearInfo({
+    //         hunterherogear : hunterAmountHeroGearNeeded,
+    //         hunterherodesign: hunterAmountHerohunterGearDesignNeeded,
 
+    //     })
+    // }
     return (
         <div>
-            <h1> Infantry Hero Gear Upgrade </h1>
+            <h1>Hunter Hero Gear Upgrade</h1>
             <form >
                 <label>
-                    Select your current infantry hero gear level:
-                    <select value = {currentInfantryGear} onChange = {handleClickForSetHeroGear}>
+                    Select your current hunter hero gear level:
+                    <select value = {currentHunterGear} onChange = {handleClickForHunterSetHeroGear}>
                     <option value = "white1star" id = '1'>White 1*</option>
                     <option value = "white2star" id = '2'>White 2*</option>
                     <option value = "white3star" id = '3'>White 3*</option>
@@ -213,10 +222,16 @@ const InfantryHeroGearFillIn = () => {
                     <option value = "orange5star">Orange 5*</option>
                     </select>
                 </label>       
+                    {/* <div>
+                        <h3>You hero gear parts currently: {hunterHeroParts}  </h3> 
+                    </div>
+                    <div>
+                        <h3>You hero gear design currently: {hunterGearDesign} </h3>
+                 </div> */}
                  <h3>What Level do you want to upgrade to</h3>
                  <label>
-                    Select your current infantry hero gear level:
-                    <select value = {currentChooseInfantryGear} onChange = {handleClickToFindWhatNeed}>
+                    Select your current hunter hero gear level:
+                    <select value = {currentChooseHunterGear} onChange = {handleClickToFindWhatNeedHunter}>
                     <option value = "white1star" id = '1'>White 1*</option>
                     <option value = "white2star" id = '2'>White 2*</option>
                     <option value = "white3star" id = '3'>White 3*</option>
@@ -239,16 +254,21 @@ const InfantryHeroGearFillIn = () => {
                     <option value = "orange5star">Orange 5*</option>
                     </select>
                 </label>
-                <div>
-                    <h3> You need : {amountHeroGearNeeded} Hero Gear to upgrade</h3>
+                {/* <div>
+                    <h3> Hero Gear you want to upgrade to : {hunterheropartwanttoupgrade}</h3>
+                    <h3>Hero Gear you want to upgrade to : {hunterhunterGearDesignwanttoupgrade}</h3>
+                </div> */}
 
-                    <h3> You Need : {amountHeroGearDesignNeeded} Hero Design to upgrade</h3>
-                    <button onClick = { handleClick }> Submit </button>
+                <div>
+                    <h3> You need : {hunterAmountHeroGearNeeded} Hero Gear to upgrade</h3>
+
+                    <h3> You Need : {hunterAmountHerohunterGearDesignNeeded} Hero Design to upgrade</h3>
+
+                    {/* <button onClick = { handleClick }> Submit </button> */}
                 </div>
             </form>
-
         </div>
     )
 }
 
-export default InfantryHeroGearFillIn;
+export default HunterHeroGearFillIn;
