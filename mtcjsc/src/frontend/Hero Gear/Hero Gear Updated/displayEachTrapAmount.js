@@ -20,6 +20,7 @@ const EachTrap = () => {
             <input 
             placeholder="Amount Hero Gear"
             onChange={event => setEnterHeroPart(event.target.value)}></input>
+            State in trap : {enterHeroPart}
 
             <h2>Please input amount of hero design you get each trap</h2>
 
@@ -27,6 +28,8 @@ const EachTrap = () => {
             placeholder="Amount Hero Design"
             onChange={event => setEnterHeroDesign(event.target.value)}></input>
 
+
+            State in trap : {enterHeroDesign}
         </div>
     )
 }

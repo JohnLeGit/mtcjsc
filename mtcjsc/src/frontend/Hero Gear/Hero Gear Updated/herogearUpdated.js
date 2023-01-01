@@ -2,6 +2,7 @@ import React, {  useState ,useEffect } from 'react';
 import { createContext, useContext } from 'react';
 import SelectionCards from './selectionCards'
 import Trap from './displayEachTrapAmount'
+import Inventory from './displayInInventory'
 
 export const countCards = createContext()
 
@@ -37,6 +38,9 @@ const UpdateHeroGear = () => {
         <h1>Click + Button Below To Add Hero Gear Card, Maximum to 9</h1>
         <button onClick={handleClickAddOn}> + </button>
             {component} 
+       </div>
+       <div>
+            <Inventory/>
        </div>
        <div>
             <Trap/>
