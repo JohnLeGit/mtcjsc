@@ -55,12 +55,12 @@ function HeroGear() {
             <h1>SOS Hero gears calculation</h1>
             <h2>Select your gears</h2>
             <h2>Limit calculation just up to 3 gears</h2>
-            <InfantryHeroGearInformation/>
-            {/* <OnePage/> */}
+            {/* <InfantryHeroGearInformation/> */}
+            <OnePage/>
           </div>
           <div>
             
-            <HunterHeroGearInformation/>
+            {/* <HunterHeroGearInformation/> */}
           </div>
           <div>
          

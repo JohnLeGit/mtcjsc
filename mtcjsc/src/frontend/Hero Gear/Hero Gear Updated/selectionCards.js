@@ -7,6 +7,7 @@ const AddOnCardForSelection = (props) => {
     
     return (
         <div>
+                <hr></hr>
                 <h1>Your first items {props.counter} </h1>
                 <GearsDetail/>
         </div>
