@@ -9,22 +9,32 @@ const Inventory = () => {
 
         <div>
             <div>
-            The amount of Hero Parts You Have In Your Inventory Is:
-            
+                <div>
+            The amount of Hero Parts You Have In Your Inventory is:
+                </div>
             <input 
             placeholder="Amount Hero Gear"
             onChange={event => setHeroGearInventory(event.target.value)}></input>
-
-            This current State is : {heroGearInventory}
             </div>
             <div>
-            The Amount of Hero Design You Have In Your Inventory Is:
-
+                <div>
+            The Amount of Hero Design You Have In Your Inventory is:
+                </div>
             <input 
             placeholder="Amount Hero Design"
             onChange={event => setHeroDesignInventory(event.target.value)}></input>
+            </div>
 
-            This current State is: {heroDesignInventory}
+            <div>
+                <h3>
+                    You have {heroGearInventory} Hero Parts Amount In Your Inventory
+                </h3>
+            </div>
+
+            <div>
+                <h3>
+                    You have {heroDesignInventory} Hero Design Amount In Your Inventory
+                </h3>
             </div>
         </div>
     )
