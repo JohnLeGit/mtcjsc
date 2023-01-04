@@ -40,9 +40,11 @@ const UpdateHeroGear = () => {
             {component} 
        </div>
        <div>
+        <hr></hr>
             <Inventory/>
        </div>
        <div>
+        <hr></hr>
             <Trap/>
        </div>
        </div>

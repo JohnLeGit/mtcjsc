@@ -10,7 +10,7 @@ const Inventory = () => {
         <div>
             <div>
                 <div>
-            The amount of Hero Parts You Have In Your Inventory is:
+            <h3>The amount of Hero Parts You Have In Your Inventory is:</h3>
                 </div>
             <input 
             placeholder="Amount Hero Gear"
@@ -18,7 +18,7 @@ const Inventory = () => {
             </div>
             <div>
                 <div>
-            The Amount of Hero Design You Have In Your Inventory is:
+            <h3>The Amount of Hero Design You Have In Your Inventory is:</h3>
                 </div>
             <input 
             placeholder="Amount Hero Design"
